@@ -9,14 +9,14 @@ class Form extends React.Component{
         this.state = {
             fName: '',
             lName: '',
-            image: ' '
+            image: ''
         };
 
         this.onChange = this.onChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.imgChange = this.imgChange.bind(this);
+        //this.imgChange = this.imgChange.bind(this);
     }
-    imgChange(e)
+    /*imgChange(e)
     {
         const {image} = this.state;
         let reader = new FileReader();
@@ -25,7 +25,7 @@ class Form extends React.Component{
 
 
         console.log("img", this.state.image);
-    }
+    }*/
     onChange(e)
     {
         e.preventDefault();
@@ -44,7 +44,7 @@ class Form extends React.Component{
             })
         this.setState({fName:''});
         this.setState({lName:''});
-        this.setState({image:null});
+        //this.setState({image:null});
     }
 
     render()
@@ -109,12 +109,22 @@ class PeopleTable extends React.Component {
             <div>
                 <Form/>
                 <table>
-                    <tr>
-                        <th scope="col">Last Name</th>
-                        <th scope="col">First Name</th>
-                    </tr>
+                    <tbody>
+                        <tr>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Avatar</th>
+                        </tr>
+                    </tbody>
                     {this.state.people.map(function(person,i){
-                        return <tr key={i}><td>{person.lastName}</td><td>{person.firstName}</td></tr> })}
+                        return <tbody key={i}>
+                        <tr>
+                            <td>{person.lastName}</td>
+                            <td>{person.firstName}</td>
+                            <td><img src={person.imgPath} alt=""></img></td>
+                        </tr>
+                        </tbody>
+                    })}
                 </table>
             </div>
         )
